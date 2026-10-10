@@ -128,28 +128,35 @@ export const Hero: React.FC<HeroProps> = ({ isReady = true }) => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full my-auto py-4 sm:py-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-6 items-center">
           
-          {/* LEFT COLUMN */}
+          {/* LEFT COLUMN: Name, Speech Box, Degree/Location (First Image Content) */}
           <div className="lg:col-span-4 flex flex-col items-start space-y-3 sm:space-y-4">
-            <div className="hero-left-item inline-flex items-center gap-2 px-3 py-1 bg-black text-white text-xs font-mono tracking-widest font-bold uppercase shadow-[2px_2px_0px_#666]">
-              <Terminal size={14} />
-              <span>SOFTWARE DEVELOPER</span>
+            <div className="hero-left-item font-mono text-xs uppercase tracking-widest text-neutral-600 font-bold flex items-center gap-2">
+              <span>LABEL</span>
+              <span className="w-3 h-0.5 bg-black inline-block"></span>
+              <span>NAME</span>
             </div>
 
-            <h1 className="hero-left-item font-headline text-4xl sm:text-6xl md:text-7xl xl:text-8xl text-black leading-none tracking-tight break-words">
-              JAVA BACKEND
-              <br />
-              DEVELOPER
+            <h1 className="hero-left-item font-headline text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-black leading-none tracking-tight break-words">
+              <div>ARRSATH</div>
+              <div>SH3RIF7 J</div>
             </h1>
 
-            <p className="hero-left-item font-display text-base sm:text-lg text-neutral-700 max-w-md font-medium leading-relaxed border-l-2 border-black pl-3 py-1">
-              “Building secure, scalable, and efficient backend applications.”
-            </p>
+            {/* Supporting Speech / Editorial Box */}
+            <div className="hero-left-item speech-bubble speech-bubble-white-inner max-w-sm border-2 border-black shadow-[3px_3px_0px_#000000]">
+              <p className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-black">
+                YES, THIS IS MY PORTFOLIO. KEEP READING.
+              </p>
+            </div>
 
-            {/* Small Chapter Marker */}
-            <div className="hero-left-item pt-1">
-              <div className="font-mono text-xs tracking-wider uppercase text-neutral-900 font-bold flex items-center gap-2">
-                <span className="w-2 h-2 bg-black inline-block"></span>
-                <span>CODE / BUILD / LEARN / REPEAT</span>
+            {/* Verified Quick Links */}
+            <div className="hero-left-item pt-1 flex flex-col items-start gap-1.5 text-xs font-mono text-neutral-600">
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-black inline-block"></span>
+                <span>BASED IN CHENNAI, INDIA</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-1.5 h-1.5 bg-black inline-block"></span>
+                <span>B.E. COMPUTER SCIENCE & ENGINEERING</span>
               </div>
             </div>
           </div>
@@ -203,35 +210,28 @@ export const Hero: React.FC<HeroProps> = ({ isReady = true }) => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN */}
+          {/* RIGHT COLUMN: Software Developer, Java Backend Developer, Quote, Code/Build (Second Image Content) */}
           <div className="lg:col-span-4 flex flex-col items-start lg:items-end text-left lg:text-right space-y-3 sm:space-y-4">
-            <div className="hero-right-item font-mono text-xs uppercase tracking-widest text-neutral-600 font-bold flex items-center gap-2">
-              <span>LABEL</span>
-              <span className="w-3 h-0.5 bg-black inline-block"></span>
-              <span>NAME</span>
+            <div className="hero-right-item inline-flex items-center gap-2 px-3 py-1 bg-black text-white text-xs font-mono tracking-widest font-bold uppercase shadow-[2px_2px_0px_#666]">
+              <Terminal size={14} />
+              <span>SOFTWARE DEVELOPER</span>
             </div>
 
-            <div className="hero-right-item font-headline text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-black leading-none tracking-tight break-words">
-              <div>ARRSATH</div>
-              <div>SH3RIF7 J</div>
-            </div>
+            <h2 className="hero-right-item font-headline text-4xl sm:text-6xl md:text-7xl xl:text-8xl text-black leading-none tracking-tight break-words">
+              JAVA BACKEND
+              <br />
+              DEVELOPER
+            </h2>
 
-            {/* Supporting Speech / Editorial Box */}
-            <div className="hero-right-item speech-bubble speech-bubble-white-inner max-w-sm border-2 border-black shadow-[3px_3px_0px_#000000]">
-              <p className="font-mono text-xs sm:text-sm font-bold uppercase tracking-wider text-black">
-                YES, THIS IS MY PORTFOLIO. KEEP READING.
-              </p>
-            </div>
+            <p className="hero-right-item font-display text-base sm:text-lg text-neutral-700 max-w-md font-medium leading-relaxed border-l-2 lg:border-l-0 lg:border-r-2 border-black pl-3 lg:pl-0 lg:pr-3 py-1">
+              “Building secure, scalable, and efficient backend applications.”
+            </p>
 
-            {/* Verified Quick Links */}
-            <div className="hero-right-item pt-1 flex flex-col lg:items-end gap-1.5 text-xs font-mono text-neutral-600">
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-black inline-block"></span>
-                <span>BASED IN CHENNAI, INDIA</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 bg-black inline-block"></span>
-                <span>B.E. COMPUTER SCIENCE & ENGINEERING</span>
+            {/* Small Chapter Marker */}
+            <div className="hero-right-item pt-1">
+              <div className="font-mono text-xs tracking-wider uppercase text-neutral-900 font-bold flex items-center gap-2">
+                <span className="w-2 h-2 bg-black inline-block"></span>
+                <span>CODE / BUILD / LEARN / REPEAT</span>
               </div>
             </div>
           </div>

@@ -41,13 +41,6 @@ export const Achievements = () => {
       {/* Inverted Screentone Dot Background */}
       <div className="absolute inset-0 pointer-events-none screentone-inverted opacity-20" />
 
-      {/* Decorative Manga Katakana Watermark: 勝利 (Victory / Triumph) */}
-      <div 
-        className="absolute -bottom-10 right-6 text-9xl font-headline font-black text-white/[0.04] select-none pointer-events-none"
-        aria-hidden="true"
-      >
-        勝利
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Chapter Flag */}

@@ -83,7 +83,7 @@ export const About = () => {
             CHAPTER 02
           </span>
           <span className="font-mono text-xs text-neutral-600 font-bold tracking-widest uppercase">
-            PROTAGONIST DOSSIER
+            CHARACTER FILE
           </span>
         </div>
 
