@@ -10,6 +10,7 @@ import { Achievements } from './components/Achievements';
 import { ExperienceEducation } from './components/ExperienceEducation';
 import { BeyondCode } from './components/BeyondCode';
 import { Contact } from './components/Contact';
+import { AudioPlayer } from './components/AudioPlayer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,6 +45,9 @@ export function App() {
         <BeyondCode />
         <Contact />
       </main>
+
+      {/* Manga Audio Player */}
+      <AudioPlayer src="/audio/bgm.mp3" title="TAME IMPALA" />
     </div>
   );
 }
