@@ -87,26 +87,26 @@ export const About = () => {
           </span>
         </div>
 
-        <h2 className="about-title font-headline text-5xl sm:text-7xl md:text-8xl text-black leading-none tracking-tight">
+        <h2 className="about-title font-headline text-4xl sm:text-6xl md:text-8xl text-black leading-none tracking-tight break-words">
           SO, WHO AM I?
         </h2>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 space-y-12">
         {/* Main Manga Narration Panel */}
-        <div className="about-narration relative bg-white border-2 border-black p-6 sm:p-10 shadow-[6px_6px_0px_#000000]">
+        <div className="about-narration relative bg-white border-2 border-black p-5 sm:p-10 shadow-[6px_6px_0px_#000000]">
           {/* Manga Narration Tag */}
-          <div className="absolute -top-3 left-6 px-3 py-0.5 bg-black text-white font-mono text-[11px] font-bold uppercase tracking-widest">
+          <div className="absolute -top-3 left-4 sm:left-6 px-3 py-0.5 bg-black text-white font-mono text-[11px] font-bold uppercase tracking-widest">
             [ NARRATION &bull; MONOLOGUE ]
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-8 space-y-4">
-              <p className="font-display text-xl sm:text-2xl md:text-3xl text-black font-semibold leading-relaxed border-l-2 border-black pl-3 py-1">
+              <p className="font-display text-lg sm:text-2xl md:text-3xl text-black font-semibold leading-relaxed border-l-2 border-black pl-3 py-1">
                 “I’m Arrsath Sheriff J, a Computer Science and Engineering graduate from KCG College of Technology, focused on Java backend development.”
               </p>
 
-              <p className="font-sans text-neutral-800 text-base sm:text-lg leading-relaxed">
+              <p className="font-sans text-neutral-800 text-sm sm:text-base md:text-lg leading-relaxed">
                 I enjoy understanding how things work behind the scenes, from building REST APIs and implementing authentication using Spring Security and JWT to working with databases and solving problems through DSA.
               </p>
 
@@ -120,26 +120,26 @@ export const About = () => {
             </div>
 
             {/* Quick Dossier Fact Column */}
-            <div className="lg:col-span-4 bg-neutral-50 border border-black p-5 space-y-3 font-mono text-xs">
+            <div className="lg:col-span-4 bg-neutral-50 border border-black p-4 sm:p-5 space-y-3 font-mono text-xs">
               <div className="text-neutral-500 uppercase font-bold border-b border-black pb-1.5 flex justify-between">
                 <span>SPEC SHEET</span>
                 <span>STATUS: ACTIVE</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-neutral-200">
+              <div className="flex flex-col xs:flex-row xs:justify-between py-1 border-b border-neutral-200 gap-0.5">
                 <span className="text-neutral-600">SPECIALIZATION:</span>
-                <span className="font-bold text-black text-right">Java Backend Architecture</span>
+                <span className="font-bold text-black sm:text-right">Java Backend Architecture</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-neutral-200">
+              <div className="flex flex-col xs:flex-row xs:justify-between py-1 border-b border-neutral-200 gap-0.5">
                 <span className="text-neutral-600">CORE STACK:</span>
-                <span className="font-bold text-black text-right">Spring Boot, PostgreSQL</span>
+                <span className="font-bold text-black sm:text-right">Spring Boot, PostgreSQL</span>
               </div>
-              <div className="flex justify-between py-1 border-b border-neutral-200">
+              <div className="flex flex-col xs:flex-row xs:justify-between py-1 border-b border-neutral-200 gap-0.5">
                 <span className="text-neutral-600">DEGREE:</span>
-                <span className="font-bold text-black text-right">B.E. CSE (CGPA: 7.54)</span>
+                <span className="font-bold text-black sm:text-right">B.E. CSE (CGPA: 7.54)</span>
               </div>
-              <div className="flex justify-between py-1">
+              <div className="flex flex-col xs:flex-row xs:justify-between py-1 gap-0.5">
                 <span className="text-neutral-600">LOCATION:</span>
-                <span className="font-bold text-black text-right">Chennai &bull; Bangalore</span>
+                <span className="font-bold text-black sm:text-right">Chennai &bull; Bangalore</span>
               </div>
             </div>
           </div>

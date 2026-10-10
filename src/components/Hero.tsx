@@ -1,49 +1,60 @@
-import { useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import { ArrowDown, Terminal } from 'lucide-react';
 
-export const Hero = () => {
+interface HeroProps {
+  isReady?: boolean;
+}
+
+export const Hero: React.FC<HeroProps> = ({ isReady = true }) => {
   const heroRef = useRef<HTMLElement>(null);
   const panelImgRef = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
+    if (!isReady) return;
     if (!heroRef.current) return;
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const ctx = gsap.context(() => {
-      // Main Entrance Timeline
+      if (prefersReducedMotion) {
+        gsap.set(['.hero-top-strip', '.hero-left-item', '.hero-center-panel', '.hero-right-item', '.hero-scroll-prompt'], {
+          opacity: 1,
+          clearProps: 'all'
+        });
+        return;
+      }
+
+      // Dynamic Fade-In Pop-Up Sequence triggered after preloading
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-      tl.from('.hero-left-item', {
-        y: 35,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.8,
-        clearProps: 'transform,opacity'
-      })
-      .from('.hero-center-panel', {
-        scale: 0.92,
-        opacity: 0,
-        rotate: -3,
-        duration: 0.9,
-        clearProps: 'transform,opacity'
-      }, '-=0.6')
-      .from('.hero-right-item', {
-        y: 35,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 0.8,
-        clearProps: 'transform,opacity'
-      }, '-=0.7')
-      .from('.hero-scroll-prompt', {
-        y: 15,
-        opacity: 0,
-        duration: 0.5,
-        clearProps: 'transform,opacity'
-      }, '-=0.3');
+      // 1. Top editorial row slides down into place
+      tl.fromTo('.hero-top-strip',
+        { y: -20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power3.out', clearProps: 'transform,opacity' }
+      )
+      // 2. Character Manga Panel springs forward with comic pop-up impact
+      .fromTo('.hero-center-panel',
+        { scale: 0.8, y: 45, opacity: 0, rotate: -3 },
+        { scale: 1, y: 0, opacity: 1, rotate: -1.5, duration: 0.85, ease: 'back.out(1.5)', clearProps: 'opacity' }
+      , '-=0.35')
+      // 3. Left Headline & Details Pop Up
+      .fromTo('.hero-left-item',
+        { y: 35, scale: 0.95, opacity: 0 },
+        { y: 0, scale: 1, opacity: 1, stagger: 0.12, duration: 0.7, ease: 'back.out(1.25)', clearProps: 'transform,opacity' }
+      , '-=0.6')
+      // 4. Right Name & Speech Box Pop Up
+      .fromTo('.hero-right-item',
+        { y: 35, scale: 0.95, opacity: 0 },
+        { y: 0, scale: 1, opacity: 1, stagger: 0.12, duration: 0.7, ease: 'back.out(1.25)', clearProps: 'transform,opacity' }
+      , '-=0.6')
+      // 5. Scroll Prompt fades in
+      .fromTo('.hero-scroll-prompt',
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: 'power2.out', clearProps: 'transform,opacity' }
+      , '-=0.25');
 
-      // Restrained cursor parallax on desktop
+      // Restrained cursor parallax on desktop (only if fine pointer / mouse)
       const handleMouseMove = (e: MouseEvent) => {
         if (!heroRef.current || !panelImgRef.current) return;
         const rect = heroRef.current.getBoundingClientRect();
@@ -60,7 +71,8 @@ export const Hero = () => {
       };
 
       const heroEl = heroRef.current;
-      if (heroEl && window.innerWidth >= 1024) {
+      const isFinePointer = window.matchMedia('(pointer: fine)').matches;
+      if (heroEl && window.innerWidth >= 1024 && isFinePointer) {
         heroEl.addEventListener('mousemove', handleMouseMove);
       }
 
@@ -72,7 +84,7 @@ export const Hero = () => {
     }, heroRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [isReady]);
 
   const handleScrollDown = () => {
     const aboutSection = document.getElementById('about');
@@ -85,59 +97,45 @@ export const Hero = () => {
     <section
       id="home"
       ref={heroRef}
-      className="relative hero-section min-h-screen pt-6 sm:pt-8 pb-12 flex flex-col justify-between bg-white border-b-2 border-black overflow-hidden"
+      className="relative hero-section min-h-screen pt-4 sm:pt-8 pb-8 sm:pb-12 flex flex-col justify-between bg-white border-b-2 border-black overflow-hidden"
     >
       {/* Background Screentone Textures */}
       <div className="absolute inset-0 pointer-events-none screentone-faint opacity-40" />
 
       {/* Top Editorial Row (Chapter 01 Header) */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 w-full flex items-center justify-between border-b border-black pb-3 mb-4">
+      <div className="hero-top-strip relative z-20 max-w-7xl mx-auto px-4 sm:px-6 w-full flex flex-col sm:flex-row sm:items-center justify-between border-b border-black pb-3 mb-4 gap-2.5">
         <div className="flex items-center gap-2.5">
           <span className="w-2.5 h-2.5 bg-black inline-block"></span>
           <span className="font-mono text-xs sm:text-sm font-bold tracking-wider uppercase text-black">
             CHAPTER 01 — INTRODUCTION
           </span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2.5 sm:gap-3">
           <a
             href="/Arrsath_Sheriff_J_Resume.pdf"
             download="Arrsath_Sheriff_J_Resume.pdf"
-            className="px-2.5 py-0.5 border border-black bg-neutral-100 hover:bg-black hover:text-white font-mono text-[11px] font-bold uppercase transition-all shadow-[2px_2px_0px_#000000]"
+            className="px-2.5 py-1 border border-black bg-neutral-100 hover:bg-black hover:text-white font-mono text-[11px] font-bold uppercase transition-all shadow-[2px_2px_0px_#000000]"
           >
             RESUME PDF
           </a>
-          <span className="px-2.5 py-0.5 border border-black bg-black text-white font-mono text-xs font-bold tracking-widest uppercase">
+          <span className="px-2.5 py-1 border border-black bg-black text-white font-mono text-xs font-bold tracking-widest uppercase">
             PORTFOLIO
           </span>
         </div>
       </div>
 
-      {/* Katakana Sound Effect Watermark: ドドド (DODODO - Menacing / Power) */}
-      <div 
-        className="absolute top-16 right-4 sm:right-12 text-7xl sm:text-9xl font-headline font-black text-neutral-900/[0.04] select-none pointer-events-none tracking-widest"
-        aria-hidden="true"
-      >
-        ドドド
-      </div>
-      <div 
-        className="absolute bottom-16 left-4 sm:left-12 text-7xl sm:text-9xl font-headline font-black text-neutral-900/[0.04] select-none pointer-events-none tracking-widest"
-        aria-hidden="true"
-      >
-        ゴゴゴ
-      </div>
-
       {/* Main Hero Container */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full my-auto py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 w-full my-auto py-4 sm:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-6 items-center">
           
           {/* LEFT COLUMN */}
-          <div className="lg:col-span-4 flex flex-col items-start space-y-4">
+          <div className="lg:col-span-4 flex flex-col items-start space-y-3 sm:space-y-4">
             <div className="hero-left-item inline-flex items-center gap-2 px-3 py-1 bg-black text-white text-xs font-mono tracking-widest font-bold uppercase shadow-[2px_2px_0px_#666]">
               <Terminal size={14} />
               <span>SOFTWARE DEVELOPER</span>
             </div>
 
-            <h1 className="hero-left-item font-headline text-5xl sm:text-6xl md:text-7xl lg:text-7xl xl:text-8xl text-black leading-none tracking-tight">
+            <h1 className="hero-left-item font-headline text-4xl sm:text-6xl md:text-7xl xl:text-8xl text-black leading-none tracking-tight break-words">
               JAVA BACKEND
               <br />
               DEVELOPER
@@ -148,7 +146,7 @@ export const Hero = () => {
             </p>
 
             {/* Small Chapter Marker */}
-            <div className="hero-left-item pt-2">
+            <div className="hero-left-item pt-1">
               <div className="font-mono text-xs tracking-wider uppercase text-neutral-900 font-bold flex items-center gap-2">
                 <span className="w-2 h-2 bg-black inline-block"></span>
                 <span>CODE / BUILD / LEARN / REPEAT</span>
@@ -158,10 +156,10 @@ export const Hero = () => {
 
           {/* CENTER: Supplied Character Artwork in Tilted Manga Panel */}
           <div className="hero-center-panel lg:col-span-4 flex justify-center items-center my-4 lg:my-0">
-            <div className="relative group max-w-[320px] sm:max-w-[360px] md:max-w-[400px] w-full">
+            <div className="relative group max-w-[280px] xs:max-w-[320px] sm:max-w-[360px] md:max-w-[400px] w-full">
               {/* Offset Comic Shadow Box */}
               <div 
-                className="absolute inset-0 bg-black border-2 border-black translate-x-2.5 translate-y-2.5 transition-transform group-hover:translate-x-3.5 group-hover:translate-y-3.5"
+                className="absolute inset-0 bg-black border-2 border-black translate-x-2 translate-y-2 sm:translate-x-2.5 sm:translate-y-2.5 transition-transform group-hover:translate-x-3.5 group-hover:translate-y-3.5"
                 aria-hidden="true"
               />
 
@@ -178,7 +176,7 @@ export const Hero = () => {
                 </div>
 
                 {/* Image Container with Screentone Backdrop */}
-                <div className="relative overflow-hidden border border-black bg-neutral-50 flex items-center justify-center min-h-[360px] sm:min-h-[420px] md:min-h-[460px]">
+                <div className="relative overflow-hidden border border-black bg-neutral-50 flex items-center justify-center min-h-[300px] sm:min-h-[380px] md:min-h-[440px]">
                   {/* Screentone texture behind character */}
                   <div className="absolute inset-0 screentone opacity-15 pointer-events-none" />
 
@@ -186,7 +184,7 @@ export const Hero = () => {
                   <img
                     src="/hero-manga.jpg?v=2"
                     alt="Arrsath Sh3rif7 J - Manga Protagonist Illustration"
-                    className="w-full h-auto object-contain max-h-[480px] relative z-10 manga-halftone-img"
+                    className="w-full h-auto object-contain max-h-[460px] relative z-10 manga-halftone-img"
                     loading="eager"
                   />
 
@@ -206,14 +204,14 @@ export const Hero = () => {
           </div>
 
           {/* RIGHT COLUMN */}
-          <div className="lg:col-span-4 flex flex-col items-start lg:items-end text-left lg:text-right space-y-4">
+          <div className="lg:col-span-4 flex flex-col items-start lg:items-end text-left lg:text-right space-y-3 sm:space-y-4">
             <div className="hero-right-item font-mono text-xs uppercase tracking-widest text-neutral-600 font-bold flex items-center gap-2">
               <span>LABEL</span>
               <span className="w-3 h-0.5 bg-black inline-block"></span>
               <span>NAME</span>
             </div>
 
-            <div className="hero-right-item font-headline text-6xl sm:text-7xl md:text-8xl lg:text-7xl xl:text-8xl text-black leading-none tracking-tight">
+            <div className="hero-right-item font-headline text-5xl sm:text-6xl md:text-7xl xl:text-8xl text-black leading-none tracking-tight break-words">
               <div>ARRSATH</div>
               <div>SH3RIF7 J</div>
             </div>
@@ -226,7 +224,7 @@ export const Hero = () => {
             </div>
 
             {/* Verified Quick Links */}
-            <div className="hero-right-item pt-2 flex flex-col lg:items-end gap-1.5 text-xs font-mono text-neutral-600">
+            <div className="hero-right-item pt-1 flex flex-col lg:items-end gap-1.5 text-xs font-mono text-neutral-600">
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-black inline-block"></span>
                 <span>BASED IN CHENNAI, INDIA</span>
@@ -243,7 +241,7 @@ export const Hero = () => {
 
       {/* BOTTOM: Scroll Prompt */}
       <div 
-        className="hero-scroll-prompt relative z-10 w-full flex justify-center items-center pt-4"
+        className="hero-scroll-prompt relative z-10 w-full flex justify-center items-center pt-2 sm:pt-4"
       >
         <button
           onClick={handleScrollDown}

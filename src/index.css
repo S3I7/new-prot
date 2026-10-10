@@ -45,6 +45,8 @@ html {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -52,7 +54,19 @@ body {
   background-color: var(--color-paper);
   color: var(--color-ink-black);
   overflow-x: hidden;
+  width: 100%;
   position: relative;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.break-words {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 a {

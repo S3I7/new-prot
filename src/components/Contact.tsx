@@ -95,29 +95,29 @@ export const Contact = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* Primary Action Buttons */}
-            <div className="lg:col-span-6 bg-white border-2 border-black p-6 sm:p-8 shadow-[6px_6px_0px_#000000] space-y-5">
+            <div className="lg:col-span-6 bg-white border-2 border-black p-5 sm:p-8 shadow-[6px_6px_0px_#000000] space-y-4 sm:space-y-5">
               <div className="border-b border-black pb-2 font-mono text-xs uppercase font-bold">
                 <span>PRIMARY ACTIONS</span>
               </div>
 
-              <div className="flex flex-col gap-3.5">
+              <div className="flex flex-col gap-3">
                 {/* 1. Contact Me */}
                 <a
                   href="mailto:arrsathsheriff37@gmail.com?subject=Regarding%20Backend%20Engineering%20Role%20-%20Arrsath%20Sheriff"
-                  className="w-full flex items-center justify-between p-4 bg-black text-white hover:bg-neutral-800 border-2 border-black font-mono text-sm font-bold uppercase transition-all shadow-[3px_3px_0px_#888]"
+                  className="w-full flex flex-col sm:flex-row sm:items-center sm:justify-between items-start gap-1.5 p-3.5 sm:p-4 bg-black text-white hover:bg-neutral-800 border-2 border-black font-mono text-sm font-bold uppercase transition-all shadow-[3px_3px_0px_#888]"
                 >
                   <span className="flex items-center gap-2">
                     <Send size={16} />
                     <span>CONTACT ME</span>
                   </span>
-                  <span className="text-xs text-neutral-300">arrsathsheriff37@gmail.com</span>
+                  <span className="text-xs text-neutral-300 truncate max-w-full">arrsathsheriff37@gmail.com</span>
                 </a>
 
                 {/* 2. Download Resume */}
                 <a
                   href="/Arrsath_Sheriff_J_Resume.pdf"
                   download="Arrsath_Sheriff_J_Resume.pdf"
-                  className="w-full flex items-center justify-between p-4 bg-white text-black hover:bg-neutral-100 border-2 border-black font-mono text-sm font-bold uppercase transition-all shadow-[3px_3px_0px_#000000]"
+                  className="w-full flex flex-col sm:flex-row sm:items-center sm:justify-between items-start gap-1.5 p-3.5 sm:p-4 bg-white text-black hover:bg-neutral-100 border-2 border-black font-mono text-sm font-bold uppercase transition-all shadow-[3px_3px_0px_#000000]"
                 >
                   <span className="flex items-center gap-2">
                     <FileText size={16} />
@@ -131,7 +131,7 @@ export const Contact = () => {
                 {/* 3. View Projects */}
                 <button
                   onClick={handleScrollToProjects}
-                  className="w-full flex items-center justify-between p-4 bg-neutral-50 text-black hover:bg-neutral-200 border-2 border-black font-mono text-sm font-bold uppercase transition-all cursor-pointer shadow-[3px_3px_0px_#000000]"
+                  className="w-full flex flex-col sm:flex-row sm:items-center sm:justify-between items-start gap-1.5 p-3.5 sm:p-4 bg-neutral-50 text-black hover:bg-neutral-200 border-2 border-black font-mono text-sm font-bold uppercase transition-all cursor-pointer shadow-[3px_3px_0px_#000000]"
                 >
                   <span className="flex items-center gap-2">
                     <Eye size={16} />
@@ -144,7 +144,7 @@ export const Contact = () => {
             </div>
 
             {/* Verified Channels */}
-            <div className="lg:col-span-6 bg-white border-2 border-black p-6 sm:p-8 shadow-[6px_6px_0px_#000000] space-y-5">
+            <div className="lg:col-span-6 bg-white border-2 border-black p-5 sm:p-8 shadow-[6px_6px_0px_#000000] space-y-4 sm:space-y-5">
               <div className="border-b border-black pb-2 flex items-center justify-between font-mono text-xs uppercase font-bold">
                 <span>VERIFIED DESTINATIONS</span>
                 <span className="text-neutral-500">[ AUTHENTIC PROFILES ]</span>
@@ -156,7 +156,7 @@ export const Contact = () => {
                   href="https://www.linkedin.com/in/arrsath-sheriff-j-194b51292?utm_source=share_via&utm_content=profile&utm_medium=member_android"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3.5 border border-black hover:bg-black hover:text-white transition-all group"
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between items-start gap-1 p-3 sm:p-3.5 border border-black hover:bg-black hover:text-white transition-all group"
                 >
                   <div className="flex items-center gap-2.5">
                     <LinkedinIcon />
@@ -173,7 +173,7 @@ export const Contact = () => {
                   href="https://github.com/S3I7"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3.5 border border-black hover:bg-black hover:text-white transition-all group"
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between items-start gap-1 p-3 sm:p-3.5 border border-black hover:bg-black hover:text-white transition-all group"
                 >
                   <div className="flex items-center gap-2.5">
                     <GithubIcon />
@@ -188,20 +188,20 @@ export const Contact = () => {
                 {/* Email */}
                 <a
                   href="mailto:arrsathsheriff37@gmail.com"
-                  className="flex items-center justify-between p-3.5 border border-black hover:bg-black hover:text-white transition-all group"
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between items-start gap-1 p-3 sm:p-3.5 border border-black hover:bg-black hover:text-white transition-all group"
                 >
                   <div className="flex items-center gap-2.5">
                     <Mail size={18} />
                     <span className="font-bold">EMAIL</span>
                   </div>
-                  <div className="flex items-center gap-1 text-xs opacity-80 group-hover:opacity-100">
-                    <span>arrsathsheriff37@gmail.com</span>
+                  <div className="flex items-center gap-1 text-xs opacity-80 group-hover:opacity-100 truncate max-w-full">
+                    <span className="truncate">arrsathsheriff37@gmail.com</span>
                     <ArrowUpRight size={14} />
                   </div>
                 </a>
 
                 {/* Direct Phone Line */}
-                <div className="flex items-center justify-between p-3.5 border border-neutral-300 bg-neutral-50 text-neutral-800">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between items-start gap-1 p-3 sm:p-3.5 border border-neutral-300 bg-neutral-50 text-neutral-800">
                   <div className="flex items-center gap-2.5">
                     <Phone size={18} />
                     <span className="font-bold">PHONE</span>

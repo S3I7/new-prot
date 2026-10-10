@@ -35,7 +35,7 @@ export function App() {
 
       {/* Main Manga Portfolio */}
       <main className="relative">
-        <Hero />
+        <Hero isReady={preloaderComplete} />
         <About />
         <TechnicalArsenal />
         <Projects />
